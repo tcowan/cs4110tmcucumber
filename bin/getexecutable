@@ -3,28 +3,30 @@
 # getexecutable creates a script for TuringMachine.class files for Java
 # submissions and simply copies an executable TuringMachine file otherwise.
 # The return code from the called program is passed back to the shell.
-
-if [[ -x "../../TuringMachine ]]
-then
-	echo "Found an executable TuringMachine"
-	cp ../../TuringMachine ../../bin/
-	$(( ls -al ../../bin ))
-	exit 0
-fi
+# 
+# 
 
 if [[ -r "../../TuringMachine.class" ]]
 then
 	echo "Found TuringMachine.class...preparing shim"
 	cp ../../TuringMachine.class ../../bin/
-	cat "#!/bin/bash\n\njava TuringMachine \$\@\n\nexit \$\?" >../../bin/TuringMachine
+	echo -e "#!/bin/bash\n\njava TuringMachine \$@\n\nexit \$?" >../../bin/TuringMachine
 	chmod +x ../../bin/TuringMachine
 	cat "../../bin/TuringMachine"
-	$(( ls -al ../../bin ))
+	ls -al ../../bin
+	exit 0
+fi
+
+if [[ -x "../../TuringMachine" ]]
+then
+	echo "Found an executable TuringMachine"
+	cp ../../TuringMachine ../../bin/
+	ls -al ../../bin
 	exit 0
 fi
 
 # if no executable or .class, return an error
-echo "Did not find TuringMachine nor TuringMachine.class"
+echo "Did not find an executable TuringMachine nor TuringMachine.class"
 
 exit 1
 
