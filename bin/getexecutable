@@ -17,10 +17,10 @@ then
 	exit 0
 fi
 
-if [[ -x "../../TuringMachine" ]]
+if [[ -x "../../TuringMachine.exe" ]]
 then
-	echo "Found an executable TuringMachine"
-	cp ../../TuringMachine ../../bin/
+	echo "Found an executable TuringMachine.exe"
+	cp ../../TuringMachine.exe ../../bin/TuringMachine
 	ls -al ../../bin
 	exit 0
 fi
