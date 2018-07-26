@@ -1,6 +1,7 @@
 Feature: TuringMachine must be present and be executable
 	Scenario: TuringMachine must be found
 		When I successfully run `getexecutable` 
-		Then a file named "../../bin/TuringMachine" should exist
-		Then 20 points are awarded
+		Then 10 points are awarded
+		And a file named "../../bin/TuringMachine" should exist
+		Then 10 points are awarded
 
