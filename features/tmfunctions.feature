@@ -15,7 +15,7 @@ Feature: TuringMachine demonstrates proper functions without crashing
 		Then the output should match /Accepted: abba/
 		And I run `TuringMachine beginswitha.txt "ababab"`
 		Then the output should match /Accepted: ababab/
-		Then 40 points are awarded
+		Then 20 points are awarded
 
 	Scenario: TuringMachine rejects on no valid transition
 		Given a file named "alla.txt" with:
