@@ -10,7 +10,7 @@ if [[ -r "../../TuringMachine.class" ]]
 then
 	echo "Found TuringMachine.class...preparing shim"
 	cp ../../*.class ../../bin/
-	echo -e "#!/bin/bash\n\njava TuringMachine \$@\n\nexit \$?" >../../bin/TuringMachine
+	echo -e "#!/bin/bash\n\nCLASSPATH="../../bin" java TuringMachine \$@\n\nexit \$?" >../../bin/TuringMachine
 	chmod +x ../../bin/TuringMachine
 	cat "../../bin/TuringMachine"
 	ls -al ../../bin
