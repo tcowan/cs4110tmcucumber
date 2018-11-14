@@ -1,33 +1,25 @@
 #!/bin/bash
 
-# getexecutable creates a script for TuringMachine.class files for Java
+# getexecutable expects a turingmachine executable script or program located
+#   in jenkinsbuild/ as created by the Jenkins build script.  This script
+#   simply copies everything in jenkinsbuild/ to bin/
+
 # submissions and simply copies an executable TuringMachine file otherwise.
 # The return code from the called program is passed back to the shell.
 # 
 # 
 
-if [[ -r "../../TuringMachine.class" ]]
+if [[ -r "../../jenkinsbuild/turingmachine" ]]
 then
-	echo "Found TuringMachine.class...preparing shim"
-	cp ../../*.class ../../bin/
-	echo -e "#!/bin/bash\n\nCLASSPATH="../../bin" java TuringMachine \$@\n\nexit \$?" >../../bin/TuringMachine
-	chmod +x ../../bin/TuringMachine
-	cat "../../bin/TuringMachine"
+	echo "Found turingmachine in jenkinsbuild/ and now copying files..."
+	cp -p ../../jenkinsbuild/* ../../bin/
 	ls -al ../../bin
 	exit 0
+else
+	# if no executable or .class, return an error
+	echo "Did not find jenkinsbuild/turingmachine executable"
+	exit 1
 fi
 
-if [[ -x "../../TuringMachine.exe" ]]
-then
-	echo "Found an executable TuringMachine.exe"
-	cp ../../TuringMachine.exe ../../bin/TuringMachine
-	ls -al ../../bin
-	exit 0
-fi
-
-# if no executable or .class, return an error
-echo "Did not find an executable TuringMachine nor TuringMachine.class"
-
-exit 1
 
 
